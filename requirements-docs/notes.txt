@@ -1,0 +1,7 @@
+Overall this look good, some notes;
+
++ I recommend wrapping the JButton class with your own class.  That way you can easily add functionality to your 2D array.
++ Whoever works on scoring results will need to lookup File I/O.  Which is nto tricky, but will take some time.
+
+Grade:
+100/100
