@@ -1,0 +1,13 @@
+Connect4 Class Diagram.dia:
+In the Game class: Are the arrays of SuperButtons?
+SuperButton should probably have a way to tell if the button is Occupied by Red or Yellow.
+
+ClassDiagramConnectFour part2.dia:
+Shawn: Where is the switch?  In the Game class?
+Alex: Those functions probably need to be a part of the Game class, but it could work.
+
+Connect4 SDD Document.doc:
+What is the difference between back-n-forth and checking for 4 in a row?
+
+Grade:
+100, this is a good start--begin coding!
