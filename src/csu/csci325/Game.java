@@ -12,79 +12,70 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 public class Game extends JFrame implements ActionListener {
-    private SuperButton myButton[]= new SuperButton[7];
-    private SuperButton myButton2[] = new SuperButton[7];
-    private SuperButton myButton3[] = new SuperButton[7];
-    private SuperButton myButton4[] = new SuperButton[7];
-    private SuperButton myButton5[] = new SuperButton[7];
-    private SuperButton myButton6[] = new SuperButton[7];
+    private SuperButton myTwoButton[][] = new SuperButton[6][7];
+    boolean playerCheck = false;
+    int playerChoice;
+
+//    public class PlayerSelect{
+//        public void main(String[] args){
+//            JFrame frame = new JFrame("Player Select");
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//            PlayerSelectPanel panel = new PlayerSelectPanel();
+//            frame.getContentPane().add(panel);
+//
+//            frame.pack();
+//            frame.setVisible(true);
+//        }
+//
+//    }
 
     public Game()
     {
-
         Container con = getContentPane();
         con.setLayout(null);
-        con.setBackground(Color.blue);
+        con.setBackground(Color.BLUE);
         getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.cyan));
         setVisible(true);
-        for (int index = 0; index < myButton.length; index ++)
-        {
-            myButton[index] = new SuperButton("" +1 + index);
-            myButton[index].setSize(100, 100);
-            myButton[index].setLocation(index*100, 10);
-            myButton[index].addActionListener(this);
-            con.add(myButton[index].getJB());
+        int count = 10;
+        //Edited by Alex Waters on 11/28/2015, changed the array of buttons to a 2 dimensional array.
+
+        for(int x = 0; x <6; x++){
+            for(int y = 0; y<7; y++){
+                myTwoButton[x][y] = new SuperButton(""+x +y);
+                myTwoButton[x][y].setSize(100, 100);
+                myTwoButton[x][y].setLocation(y * 100, count);
+                myTwoButton[x][y].addActionListener(this);
+                con.add(myTwoButton[x][y].getJB());
+            }
+            count+=100;
         }
-        for (int index = 0; index < myButton2.length; index ++)
-        {
-            myButton2[index] = new SuperButton("" +2 + index);
-            myButton2[index].setSize(100, 100);
-            myButton2[index].setLocation(index*100, 110);
-            myButton2[index].addActionListener(this);
-            con.add(myButton2[index].getJB());
-        }
-        for (int index = 0; index < myButton3.length; index ++)
-        {
-            myButton3[index] = new SuperButton("" +3 + index);
-            myButton3[index].setSize(100, 100);
-            myButton3[index].setLocation(index*100,210);
-            myButton3[index].addActionListener(this);
-            con.add(myButton3[index].getJB());
-        }
-        for (int index = 0; index < myButton4.length; index ++)
-        {
-            myButton4[index] = new SuperButton("" +4 + index);
-            myButton4[index].setSize(100, 100);
-            myButton4[index].setLocation(index*100, 310);
-            myButton4[index].addActionListener(this);
-            con.add(myButton4[index].getJB());
-        }
-        for (int index = 0; index < myButton5.length; index ++)
-        {
-            myButton5[index] = new SuperButton("" +5 + index);
-            myButton5[index].setSize(100, 100);
-            myButton5[index].setLocation(index*100, 410);
-            myButton5[index].addActionListener(this);
-            con.add(myButton5[index].getJB());
-        }
-        for (int index = 0; index < myButton6.length; index ++)
-        {
-            myButton6[index] = new SuperButton("" +6 + index);
-            myButton6[index].setSize(100, 100);
-            myButton6[index].setLocation(index*100, 510);
-            myButton6[index].addActionListener(this);
-            con.add(myButton6[index].getJB());
-        }
+
     }
+
 
     public void actionPerformed(ActionEvent e)
     {
+        //Edited by Alex Waters, 11/28/2015, nested for loop to attach action listener's to each button, and
+        //a back and forth function.
 
-                if ((myButton[0].getOccupied() != true) && (e.getActionCommand().equals("10")))
-                {
-                    myButton[0].setOccupied();
+        for(int x = 0; x<6; x++){
+                    for(int y = 0; y<7; y++){
+                        if ((playerCheck && !myTwoButton[x][y].getOccupied()) && (e.getActionCommand().equals(myTwoButton[x][y].getName()))) {
 
+                            myTwoButton[x][y].setOccupiedp1();
+                            playerCheck = false;
+
+                        }
+                        else if ((!playerCheck && !myTwoButton[x][y].getOccupied()) && (e.getActionCommand().equals(myTwoButton[x][y].getName()))){
+
+                            myTwoButton[x][y].setOccupiedp2();
+                            playerCheck = true;
+
+                        }
+                    }
                 }
+
 
             }
 
